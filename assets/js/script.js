@@ -64,16 +64,29 @@ const filterBtn = document.querySelectorAll("[data-filter-btn]");
 select.addEventListener("click", function () { elementToggleFunc(this); });
 
 // add event in all select items
+// for (let i = 0; i < selectItems.length; i++) {
+//   selectItems[i].addEventListener("click", function () {
+
+//     let selectedValue = this.innerText.toLowerCase();
+//     selectValue.innerText = this.innerText;
+//     elementToggleFunc(select);
+//     filterFunc(selectedValue);
+
+//   });
+// }
+
+// add event in all select items (MOBILE)
 for (let i = 0; i < selectItems.length; i++) {
   selectItems[i].addEventListener("click", function () {
 
-    let selectedValue = this.innerText.toLowerCase();
+    const selectedValue = this.dataset.filter; // ✅ FIX
     selectValue.innerText = this.innerText;
     elementToggleFunc(select);
     filterFunc(selectedValue);
 
   });
 }
+
 
 // filter variables
 const filterItems = document.querySelectorAll("[data-filter-item]");
@@ -95,13 +108,32 @@ const filterFunc = function (selectedValue) {
 }
 
 // add event in all filter button items for large screen
+// let lastClickedBtn = filterBtn[0];
+
+// for (let i = 0; i < filterBtn.length; i++) {
+
+//   filterBtn[i].addEventListener("click", function () {
+
+//     let selectedValue = this.innerText.toLowerCase();
+//     selectValue.innerText = this.innerText;
+//     filterFunc(selectedValue);
+
+//     lastClickedBtn.classList.remove("active");
+//     this.classList.add("active");
+//     lastClickedBtn = this;
+
+//   });
+
+// }
+
+// add event in all filter button items for large screen
 let lastClickedBtn = filterBtn[0];
 
 for (let i = 0; i < filterBtn.length; i++) {
 
   filterBtn[i].addEventListener("click", function () {
 
-    let selectedValue = this.innerText.toLowerCase();
+    const selectedValue = this.dataset.filter; // ✅ FIX
     selectValue.innerText = this.innerText;
     filterFunc(selectedValue);
 
@@ -112,6 +144,7 @@ for (let i = 0; i < filterBtn.length; i++) {
   });
 
 }
+
 
 
 
@@ -166,25 +199,25 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 
 
-document.getElementById("contact-form").addEventListener("submit", async function (event) {
-  event.preventDefault();
+// document.getElementById("contact-form").addEventListener("submit", async function (event) {
+//   event.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
-  const responseMessage = document.getElementById("responseMessage");
+//   const name = document.getElementById("name").value;
+//   const email = document.getElementById("email").value;
+//   const message = document.getElementById("message").value;
+//   const responseMessage = document.getElementById("responseMessage");
 
-  const response = await fetch("/send-email", {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name, email, message })
-  });
+//   const response = await fetch("/send-email", {
+//       method: "POST",
+//       headers: {
+//           "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify({ name, email, message })
+//   });
 
-  const result = await response.json();
-  responseMessage.textContent = result.message;
-});
+//   const result = await response.json();
+//   responseMessage.textContent = result.message;
+// });
 
 
 
